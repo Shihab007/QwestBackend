@@ -1,0 +1,24 @@
+{
+  "name": "qwestbackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "start": "node index.js",
+  "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shihab007/QwestBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shihab007/QwestBackend/issues"
+  },
+  "homepage": "https://github.com/Shihab007/QwestBackend#readme",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
+}
