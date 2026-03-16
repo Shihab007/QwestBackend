@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "start": "node index.js",
+  "dev": "node --watch index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
     "url": "https://github.com/Shihab007/QwestBackend/issues"
   },
   "homepage": "https://github.com/Shihab007/QwestBackend#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
 }
