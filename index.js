@@ -1,10 +1,9 @@
 const WebSocket = require('ws');
 const { init } = require('./src/store/fileStore');
-const { handleGetPlayer, handleSyncPlayer } = require('./src/handlers/player');
 const { handleCheckCooldown, handleStartGame, handleSkipCooldown } = require('./src/handlers/cooldown');
-const { handleGetLeaderboard } = require('./src/handlers/leaderboard');
+const { handleGetLeaderboard, handleResetLeaderboard } = require('./src/handlers/leaderboard');
 const { handleUpgrade } = require('./src/handlers/upgrades');
-
+const { handleGetPlayer, handleSyncPlayer, handleSetUsername, handleSetProfile, handleDailyLogin } = require('./src/handlers/player');
 
 const PORT = 3000;
 
@@ -58,6 +57,21 @@ wss.on('connection', (ws) => {
         break;
       case 'UPGRADE':
         handleUpgrade(ws, payload);
+        break;
+      case 'SET_USERNAME':
+        handleSetUsername(ws, payload);
+        break;
+      case 'SET_PROFILE':
+        handleSetProfile(ws, payload);
+        break;
+      case 'GET_LEADERBOARD':
+        handleGetLeaderboard(ws, payload);
+        break;
+      case 'RESET_LEADERBOARD':
+        handleResetLeaderboard(ws, payload);
+        break;
+      case 'DAILY_LOGIN':
+        handleDailyLogin(ws, payload);
         break;
       default:
         ws.send(JSON.stringify({ type: 'ERROR', payload: `Unknown type: ${type}` }));

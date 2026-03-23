@@ -26,11 +26,19 @@ function getPlayer(playerId) {
 
 function createPlayer(playerId) {
   const data = readAll();
+
   data[playerId] = {
     playerId,
+    username: 'Player_' + playerId.slice(-4),
+    dob: null,
+    state: null,
+    isPrizeEligible: false,
     xp: 0,
+    leaderboardXP: 0,
     coins: 0,
     level: 0,
+    lastLoginDate: null,
+    leaderboardResetDate: getNextResetDate(),
     upgrades: {
       character: 0,
       pet: 0,
@@ -42,6 +50,7 @@ function createPlayer(playerId) {
     },
     createdAt: new Date().toISOString()
   };
+
   writeAll(data);
   return data[playerId];
 }
@@ -52,4 +61,11 @@ function savePlayer(playerId, playerData) {
   writeAll(data);
 }
 
-module.exports = { init, getPlayer, createPlayer, savePlayer, readAll };
+// Returns the first day of next month as ISO string
+function getNextResetDate() {
+  const now = new Date();
+  const reset = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  return reset.toISOString();
+}
+
+module.exports = { init, getPlayer, createPlayer, savePlayer, readAll, writeAll, getNextResetDate };
